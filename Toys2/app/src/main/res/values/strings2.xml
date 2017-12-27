@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <String-array  name="silabas_array">
+        <item>Co-ru-ja</item>
+        <item>Ca-va-lo</item>
+        <item>E-le-fan-te</item>
+        <item>Ca-chor-ro</item>
+        <item>Pa-to</item>
+        <item>Ga-li-nha</item>
+        <item>Ga-to</item>
+        <item>Por-co</item>
+    </String-array>
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Toys2</string>
+    <string-array  name="animais_array">
+        <item>Coruja</item>
+        <item>Cavalo</item>
+        <item>Elefante</item>
+        <item>Cachorro</item>
+        <item>Pato</item>
+        <item>Galinha</item>
+        <item>Gato</item>
+        <item>Porco</item>
+    </string-array>
+</resources>

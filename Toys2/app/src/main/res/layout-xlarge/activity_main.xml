@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.roberto.toys2.MainActivity">
+
+    <Spinner
+        android:id="@+id/spinneranimal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="218dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escolha aleatória"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="328dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escolha o animal"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="162dp" />
+
+</android.support.constraint.ConstraintLayout>
