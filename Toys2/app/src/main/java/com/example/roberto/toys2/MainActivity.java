@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner animais;
     ListView silabas;
     Button btnaleatorio, btnConexao, btnEscolher;
-    TextView display_data;
+    TextView display_result;
     Context context = this;
     boolean conexao = false;
 
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnEscolher.setOnClickListener(new View.OnClickListener() {
+        /*btnEscolher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(conexao) {
@@ -95,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "O bluetooth não está conectado", Toast.LENGTH_LONG).show();
                 }
             }
-        });
-        mHandler = new Handler(){
+        });*/
+        /*mHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what == MESSAGE_READ) {
@@ -120,25 +121,48 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-        };
+        };*/
+
         animais = (Spinner) findViewById(R.id.spinneranimal);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.animais_array, android.R.layout.simple_spinner_item);
         animais.setAdapter(adapter);
+        btnaleatorio = (Button) findViewById(R.id.btnaleatorio);
+        display_result = (TextView) findViewById(R.id.display_result);
 
-        display_data = (TextView) findViewById(R.id.display_result);
-
-
-        Button btnaleatorio = (Button) findViewById(R.id.btnaleatorio);
+        final String silabasitem[] = {"Co-ru-ja","Ca-va-lo","E-le-fan-te","Ca-chor-ro","Pa-to","Ga-li-nha","Ga-to","Por-co"};
 
         btnaleatorio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String[] array = context.getResources().getStringArray(R.array.silabas_array);
-                String randomStr = array[new Random().nextInt(array.length)];
+                Random randomGen = new Random();
 
+                final int rando = randomGen.nextInt(8);
+                display_result.setText(silabasitem[rando]);
 
-
-
+                if(rando == 1 ){
+                    connectedThread.enviar("");
+                }
+                if(rando == 2 ){
+                    connectedThread.enviar("");
+                }
+                if(rando == 3 ){
+                    connectedThread.enviar("");
+                }
+                if(rando == 4 ){
+                    connectedThread.enviar("");
+                }
+                if(rando == 5 ){
+                    connectedThread.enviar("");
+                }
+                if(rando == 6 ){
+                    connectedThread.enviar("");
+                }
+                if(rando == 7 ){
+                    connectedThread.enviar("");
+                }
+                if(rando == 8 ){
+                    connectedThread.enviar("");
+                }
 
                 // aqui voce faz alguma coisa ou pode chamar uma funcao
             }
@@ -166,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
                     //Toast.makeText(getApplicationContext(), "Mac:" +MAC, Toast.LENGTH_LONG).show();
                     toyDevice = toyBluetoothAdapter.getRemoteDevice(MAC);
                     try {
-
                         toySocket = toyDevice.createRfcommSocketToServiceRecord(TOY_UUID);
                         toySocket.connect();
                         conexao = true;
@@ -208,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
             int bytes; // bytes returned from read()
 
             // Keep listening to the InputStream until an exception occurs
-            while (true) {
+           /* while (true) {
                 try {
                     // Read from the InputStream
                     bytes = mmInStream.read(buffer);
@@ -220,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     break;
                 }
-            }
+            }*/
         }
 
         public void enviar(String dadosEnviar) {
