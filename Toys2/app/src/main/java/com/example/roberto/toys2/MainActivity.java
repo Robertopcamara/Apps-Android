@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     BluetoothAdapter toyBluetoothAdapter = null;
     BluetoothDevice toyDevice = null;
     BluetoothSocket toySocket = null;
-    Spinner animais;
     ListView silabas;
     Button btnaleatorio, btnConexao, btnEscolher;
     TextView display_result;
@@ -53,6 +53,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final MediaPlayer vacaSom = MediaPlayer.create(this, R.raw.vaca);
+        final MediaPlayer bemteviSom = MediaPlayer.create(this, R.raw.bemtevi);
+        final MediaPlayer cachorroSom = MediaPlayer.create(this, R.raw.cachorro);
+        final MediaPlayer cavaloSom = MediaPlayer.create(this, R.raw.cavalo);
+        final MediaPlayer elefanteSom = MediaPlayer.create(this, R.raw.elefante);
+        final MediaPlayer galinhaSom = MediaPlayer.create(this, R.raw.galinha);
+        final MediaPlayer gatoSom = MediaPlayer.create(this, R.raw.gato);
+        final MediaPlayer golfinhoSom = MediaPlayer.create(this, R.raw.golfinho);
+        final MediaPlayer griloSom = MediaPlayer.create(this, R.raw.grilo);
+        final MediaPlayer leaoSom = MediaPlayer.create(this, R.raw.leao);
+        final MediaPlayer loboSom = MediaPlayer.create(this, R.raw.lobo);
+        final MediaPlayer macacoSom = MediaPlayer.create(this, R.raw.macaco);
+        final MediaPlayer patoSom = MediaPlayer.create(this, R.raw.pato);
+        final MediaPlayer peruSom = MediaPlayer.create(this, R.raw.peru);
+        final MediaPlayer porcoSom = MediaPlayer.create(this, R.raw.porco);
+        final MediaPlayer sapoSom = MediaPlayer.create(this, R.raw.sapo);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnConexao = (Button)findViewById(R.id.btnConexao);
@@ -87,81 +103,87 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*btnEscolher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(conexao) {
-                    connectedThread.enviar("");
-                } else {
-                    Toast.makeText(getApplicationContext(), "O bluetooth não está conectado", Toast.LENGTH_LONG).show();
-                }
-            }
-        });*/
-        /*mHandler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                if(msg.what == MESSAGE_READ) {
-                    String recebidos = (String) msg.obj;
-                    dadosBluetooth.append(recebidos);
 
-                    int fimInfo = dadosBluetooth.indexOf("}");
 
-                    if(fimInfo > 0){
-                        String dadosCompletos = dadosBluetooth.substring(0, fimInfo);
 
-                        int tamanhoInfo = dadosCompletos.length();
 
-                        if(dadosBluetooth.charAt(0) == '{') {
-                            String dadosFinais = dadosBluetooth.substring(1, tamanhoInfo);
-                            Log.d("Recebidos", dadosFinais);
-                        }
-                        dadosBluetooth.delete(0, dadosBluetooth.length());
 
-                    }
-                }
-
-            }
-        };*/
-
-        animais = (Spinner) findViewById(R.id.spinneranimal);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.animais_array, android.R.layout.simple_spinner_item);
-        animais.setAdapter(adapter);
         btnaleatorio = (Button) findViewById(R.id.btnaleatorio);
         display_result = (TextView) findViewById(R.id.display_result);
 
-        final String silabasitem[] = {"Co-ru-ja","Ca-va-lo","E-le-fan-te","Ca-chor-ro","Pa-to","Ga-li-nha","Ga-to","Por-co"};
+        final String silabasitem[] = {"Ga-to","Ca-chor-ro","Lo-bo","Le-ão","Ma-ca-co","Ca-va-lo","Ga-li-nha","E-le-fan-te","Gri-lo","Gol-fi-nho","Pa-to","Pe-ru","Va-ca","Por-co","Sa-po","Bem-te-vi"};
 
         btnaleatorio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Random randomGen = new Random();
 
-                final int rando = randomGen.nextInt(8);
+                final int rando = randomGen.nextInt(16);
                 display_result.setText(silabasitem[rando]);
 
+                if(rando == 0 ){
+                    connectedThread.enviar("gato");
+                    gatoSom.start();
+                }
                 if(rando == 1 ){
-                    connectedThread.enviar("");
+                    connectedThread.enviar("cachorro");
+                    cachorroSom.start();
                 }
                 if(rando == 2 ){
-                    connectedThread.enviar("");
+                    connectedThread.enviar("lobo");
+                    loboSom.start();
                 }
                 if(rando == 3 ){
-                    connectedThread.enviar("");
+                    connectedThread.enviar("leao");
+                    leaoSom.start();
                 }
                 if(rando == 4 ){
-                    connectedThread.enviar("");
+                    connectedThread.enviar("macaco");
+                    macacoSom.start();
                 }
                 if(rando == 5 ){
-                    connectedThread.enviar("");
+                    connectedThread.enviar("cavalo");
+                    cavaloSom.start();
                 }
                 if(rando == 6 ){
-                    connectedThread.enviar("");
+                    connectedThread.enviar("galinha");
+                    galinhaSom.start();
                 }
                 if(rando == 7 ){
-                    connectedThread.enviar("");
+                    connectedThread.enviar("elefante");
+                    elefanteSom.start();
                 }
                 if(rando == 8 ){
-                    connectedThread.enviar("");
+                    connectedThread.enviar("grilo");
+                    griloSom.start();
+                }
+                if(rando == 9 ){
+                    connectedThread.enviar("golfinho");
+                    golfinhoSom.start();
+                }
+                if(rando == 10 ){
+                    connectedThread.enviar("pato");
+                    patoSom.start();
+                }
+                if(rando == 11 ){
+                    connectedThread.enviar("peru");
+                    peruSom.start();
+                }
+                if(rando == 12 ){
+                    connectedThread.enviar("vaca");
+                    vacaSom.start();
+                }
+                if(rando == 13 ){
+                    connectedThread.enviar("porco");
+                    porcoSom.start();
+                }
+                if(rando == 14 ){
+                    connectedThread.enviar("sapo");
+                    sapoSom.start();
+                }
+                if(rando == 15 ){
+                    connectedThread.enviar("bemtevi");
+                    bemteviSom.start();
                 }
 
                 // aqui voce faz alguma coisa ou pode chamar uma funcao
